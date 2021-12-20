@@ -23,7 +23,7 @@ db = SQLAlchemy(app) #initialize db
 class User(db.Model):  # flask model
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), unique=True, nullable=False)
-    soundfile = db.Column(db.LargeBinary)  #will be storing audio files potentially
+    soundfile = db.Column(db.String(180))  #will be storing audio files potentially
     
     def __repr__(self) -> str:
         return self.title
@@ -39,10 +39,11 @@ def hello_world():
         myobj.save(f"/home/dhanno/Documents/flask/static/welcome{text}.wav")
         playsound(f"/home/dhanno/Documents/flask/static/welcome{text}.wav")
         time.sleep(1)
-        b = 'default'  #random array
+        b = (f"/home/dhanno/Documents/flask/static/welcome{text}.wav")  #random array
+        
         #string = ' '.join([str(elem) for elem in b]) # converted to array
         a_byte = bytearray(b, 'utf-32') # array converted to byte
-        newtext = User(title=text, soundfile=a_byte)
+        newtext = User(title=text, soundfile=b)
         #newtext = User(title=text)
         db.session.add(newtext)
         db.session.commit()     
