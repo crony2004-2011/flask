@@ -30,19 +30,15 @@ class User(db.Model):  # flask model
     
 @app.route('//', methods=['POST', 'GET'])
 def hello_world():
+    
     if request.method == 'POST':
         text = request.form['text']
         language = 'en'       
         myobj = gTTS(text=text, lang=language, slow=False) #gTTs applied
-        #f = wave.open(f"/home/dhanno/Documents/flask/static/welcome{random.randint(0,99)}.wav",'wb')
-        myobj.save(f"/home/dhanno/Documents/flask/static/welcome{random.randint(0,99)}.wav")
+        #myobj.save(f"/home/dhanno/Documents/flask/static/welcome{random.randint(0,99)}.wav")
+        myobj.save(f"/home/dhanno/Documents/flask/static/welcome{text}.wav")
+        playsound(f"/home/dhanno/Documents/flask/static/welcome{text}.wav")
         time.sleep(1)
-        #playsound(f)
-        #convert wav to array list
-        #a = []
-        #data, samplerate = sf.read('/home/dhanno/Documents/flask/static/welcome1.wav')
-        #b = sf.write(f'home/dhanno/Documents/flask/static/output{random.randint(0,99)}.wav', data, samplerate)
-        #convert array list i.e. a to byte
         b = 'default'  #random array
         #string = ' '.join([str(elem) for elem in b]) # converted to array
         a_byte = bytearray(b, 'utf-32') # array converted to byte
