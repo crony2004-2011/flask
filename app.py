@@ -35,9 +35,9 @@ def hello_world():
         language = 'en'       
         myobj = gTTS(text=text, lang=language, slow=False) #gTTs applied
         #f = wave.open(f"/home/dhanno/Documents/flask/static/welcome{random.randint(0,99)}.wav",'wb')
-        myobj.save("/home/dhanno/Documents/flask/static/welcome1.wav")
+        myobj.save(f"/home/dhanno/Documents/flask/static/welcome{random.randint(0,99)}.wav")
         time.sleep(1)
-        playsound('/home/dhanno/Documents/flask/static/welcome1.wav')
+        #playsound(f)
         #convert wav to array list
         #a = []
         #data, samplerate = sf.read('/home/dhanno/Documents/flask/static/welcome1.wav')
